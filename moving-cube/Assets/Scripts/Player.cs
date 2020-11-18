@@ -3,10 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : NetworkBehaviour
-{
-    // [SyncVar(hook = nameof(OnHolaCountChanged))]
-    // int holaCount = 0;
+public class Player : NetworkBehaviour{
 
     void HandleMovement()
     {
@@ -14,6 +11,7 @@ public class Player : NetworkBehaviour
         {
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
+            // *0.1f to make it move slower
             Vector3 movement = new Vector3(moveHorizontal * 0.1f, moveVertical * 0.1f, 0);
             transform.position = transform.position + movement;
         }
@@ -22,12 +20,6 @@ public class Player : NetworkBehaviour
     void Update()
     {
         HandleMovement();
-
-        // if (isLocalPlayer && Input.GetKeyDown(KeyCode.X))
-        // {
-        //     Debug.Log("Sending Hola to Server!");
-        //     Hola();
-        // }
     }
 
     // public override void OnStartServer()
